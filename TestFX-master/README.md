@@ -7,16 +7,38 @@
 [![Maven Central](https://img.shields.io/maven-central/v/org.testfx/testfx-core.svg?label=maven&style=flat-square)](https://search.maven.org/#search|ga|1|org.testfx)
 [![Chat on Gitter](https://img.shields.io/gitter/room/testfx/testfx-core.svg?style=flat-square)](https://gitter.im/TestFX/TestFX)
 
-Simple and clean testing for JavaFX.
+Simple and clean testing for JavaFX. JavaFX documentation can be found [here] (https://openjfx.io) .
 
-TestFX requires a minimum Java version of 8 (1.8).
+TestFX requires a minimum Java version of 8 (1.8) and JavaFX (no longer included in Java SE since Java 11).
 
-## Documentation
+## Summary
+
+[Documentation](#documentation)
+
+[Features](#features)
+
+
+[Gradle](#gradle)
+
+
+[Maven](#maven)
+
+
+[Continuous Integration (CI)](#ci)
+
+[Chat](#chat)
+
+
+[TestFX Legacy: Deprecated](#testfxlegacy)
+
+[Credits](#credits)
+
+# <span id="documentation">Documentation </span>
 
 * See the [Javadocs](https://testfx.github.io/TestFX/docs/javadoc/) for latest `master`.
 * See the changelog [CHANGES.md](https://github.com/TestFX/TestFX/blob/master/CHANGES.md) for latest released version.
 
-## Features
+## <span id="features">Features </span>
 
 - A fluent and clean API.
 - Flexible setup and cleanup of JavaFX test fixtures.
@@ -31,7 +53,7 @@ TestFX requires a minimum Java version of 8 (1.8).
 - Screenshots of failed tests.
 - Headless testing using [Monocle](https://github.com/TestFX/Monocle).
 
-## Gradle
+## <span id="gradle">Gradle </span>
 
 To add a dependency on TestFX using Gradle, use the following:
 
@@ -101,7 +123,8 @@ testCompile group: 'org.hamcrest', name: 'hamcrest', version: '2.1'
 testCompile group: 'org.assertj', name: 'assertj-core', version: '3.13.2'
 ```
 
-## Maven
+## <span id="maven">Maven </span>
+
 
 To add a dependency on TestFX using Maven, use the following:
 
@@ -493,7 +516,7 @@ class ClickableButtonSpec extends ApplicationSpec {
 }
 ```
 
-## Continuous Integration (CI)
+## <span id="ci">Continuous Integration (CI) </span>
 
 ### Travis CI
 
@@ -502,8 +525,9 @@ take the following steps:
 
 1. Ensure that your unit tests are triggered as part of your build script. This
    is usually the default case when using Maven or Gradle.
-2. If you wish to test in a headless environment your must add [Monocle](https://github.com/TestFX/Monocle)
-    as a test dependency:
+2. If you wish to test in a headless environment your must add [Monocle](https://github.com/TestFX/Monocle) as a test dependency:
+
+    <br>
 
     `build.gradle`
     ```gradle
@@ -521,6 +545,8 @@ take the following steps:
         <scope>test</scope>
     </dependency>
     ```
+
+    <br>
 3. Base your Travis configuration on the following. Some different build variations are shown (Glass/AWT robot,
     Headed/Headless, (Hi)DPI, etc.) adjust the build matrix to your requirements.
 
@@ -598,6 +624,8 @@ steps:
    is usually the default case when using Maven or Gradle.
 2. If you wish to test in a headless environment your must add [Monocle](https://github.com/TestFX/Monocle)
     as a test dependency:
+
+<br>
 
     `build.gradle`
     ```gradle
@@ -677,11 +705,13 @@ steps:
       - C:\ProgramData\chocolatey\cache -> appveyor.yml
     ```
 
-## Chat
+## <span id="chat">Chat</span>
+
 
 Head over to our [gitter chat](https://gitter.im/TestFX/TestFX) for discussion and questions.
 
-## TestFX Legacy: Deprecated
+
+## <span id="testfxlegacy">TestFX Legacy: Deprecated</span>
 
 The `testfx-legacy` subproject is deprecated and no longer supported. It is highly recommended
 that you switch from using `testfx-legacy`. If you want to continue using it you should cap
@@ -689,6 +719,6 @@ the versions of `testfx-core` and `testfx-legacy` to `4.0.8-alpha`, which was th
 version of `testfx-legacy`. Using a newer version of `testfx-core` with an older version of
 `testfx-legacy` will very likely break (and does with `testfx-core` versions past `4.0.10-alpha`).
 
-## Credits
+## <span id="credits">Credits</span>
 
 Thanks to all of the [contributors of TestFX](https://github.com/TestFX/TestFX/graphs/contributors)!
