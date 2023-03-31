@@ -1,5 +1,20 @@
 # Rapport partie 2 Axel SENECHAL
 
+
+# Sommaire:
+
+- [Introduction](#introduction)
+- [Les Modifications](#les-modifications)
+    - [Petites modifications](#petites-modifications)
+        - [P1 - Amélioration du README](#p1-amélioration-du-readme)
+        - [P2 - Commentaire ajoutés](#p2--commentaires-ajoutés---fxassertjava)
+        - [P3 :  Magic numbers en Variables](#p3--magic-numbers-en-variables)
+        - [P4 - Nomenclature Méthode](#p4--keyandbuttonreleasetestjava---nomenclature-des-méthodese)
+
+    - [Moyennes modification](#moyennes-modifications)
+    - [Grandes modification](#grandes-modifications)
+- [Comparatif Partie 1 / Partie 2](#comparatif-partie-1--partie-2)
+- [Retour](#retour)
 ## Introduction
 
 Lors de cette seconde partie du projet de Génie Logiciel, je vais personnellement m'intéresser à la résolution de problème relevé dans la partie 1, bien que je ne me ferme pas à trouver d'autre bug durant ce second parcours. 
@@ -47,11 +62,31 @@ début de classe, puis méthodes publiques et enfin méthodes privées
 
 - **Solution**: Relecture et amélioration
      - Explicitation de la dépendance avec JavaFX et la nature de bibliothèque externe de celui ci depuis Java 11 dès le début plutot que dans les features.
+
+```
+TestFX requires a minimum Java version of 8 (1.8) and JavaFX (no longer included in Java SE since Java 11).
+```
+
+
      - Création du sommaire dynamique dans le README pour améliorer le parcours utilisateur. (Uniquement pour les grands titre type "##")
 
+```
+ad
+
+[Documentation](#documentation)
+
+[Features](#features)
+
+[...]
+
+## <span id="documentation">Documentation </span>
+
+## <span id="features">Features </span>
+```
 
 - **Lien commit**: https://github.com/AxelSenechal/-l3-miage-GL-projet-part2-AXEL-SENECHAL/commit/a2f11be09cc1dad42c88899058a61f3d540e3946
 
+(Correctif => Documentation passe plus tard de type # à type ##, léger oublie au moment de la solution)
 #### P2 : Commentaires ajoutés - FxAssert.java
 
 - **Localisation**: FxAssert.java
@@ -59,10 +94,22 @@ début de classe, puis méthodes publiques et enfin méthodes privées
 - **Explication**: Classe assez grande déclinant l'utilisation polymorphe d'une methode. Nécessite plus de clarté
 
 - **Solution**: 
+    - Commentaire présentant la suite de methode qui wrap verifyThat sous divers signatures, pour clarifier la lecture de code, ainsi que les methodes privées déclarées plus tard par formalisme (mais qui du coup rendait la compréhension fragmentée)
         
-        - Commentaire rajouté au dessus des méthodes de recherche à la fin de la classe pour la compréhesion de la suite de méthodes, de plus, ces méthodes ont étés déplacées en amont des méthodes les appelant.
-        - Commentaire présentant la suite de methode qui wrap verifyThat sous divers signatures, pour clarifier la lecture de code, ainsi que les methodes privées déclarées plus tard par formalisme (mais qui du coup rendait la compréhension fragmentée)
-        - Mise à jour des copyrights des contributeurs Git à 2023.
+            
+            /* Wrappings of the verifyThat methods with multiple signatures, that may use the following private methods:
+            - verifyThatImpl: initial method wrapped by verifyThat which test to make the assertion and manage the potential exception
+            - toNode/toNodeSet/toNodeMatcher: finding methods for Node elements
+            */
+            
+
+    - Commentaire rajouté au dessus des méthodes de recherche à la fin de la classe pour la compréhesion de la suite de méthodes, de plus, ces méthodes ont étés déplacées en amont des méthodes les appelant.
+                
+                /*
+                Here are several methods to get to Node elements (Node / NodeSet / NodeMatcher)
+                */
+                
+    - Mise à jour des copyrights des contributeurs Git à 2023.
         
 
 
@@ -78,7 +125,7 @@ https://github.com/AxelSenechal/-l3-miage-GL-projet-part2-AXEL-SENECHAL/commit/0
 
 En effet, à la première lecture j'avais décider de déplacer directement les méthodes verifyThat et les méthodes de recherches *avant* les méthodes verifyThis, pour clarifier l'utilisation et le sens de lecture du code. Mais étant privées, ces méthodes doivent rester en fin de classe. J'ai donc remis en plus les méthodes et ai commenté comme annoncé dans la solution
 
-#### P3 :  Magic numbers -> Variables
+#### P3 :  Magic numbers en Variables
 
 
 - **Localisation**: ApplicationStartTest.java
@@ -87,8 +134,24 @@ En effet, à la première lecture j'avais décider de déplacer directement les 
 
 - **Solution**: 
         
-        - Mise en paramètre publique des attributs nécessaires à la création et l'utilisation de l'objet Scene.
-        - Initialisation de ces paramètres avec les valeurs choisies initialement en magic numbers dans la méthode "init".
+    - Mise en paramètre publique des attributs nécessaires à la création et l'utilisation de l'objet Scene.
+                
+            //Scene parameter
+            public double width,height;
+
+            double seconds_wait;
+
+    - Initialisation de ces paramètres avec les valeurs choisies initialement en magic numbers dans la méthode "init".
+
+          @Override
+            public void init() throws Exception {
+            FxToolkit.registerStage(Stage::new);
+
+            //Setting scene parameters
+            width=100;
+            height=100;
+            seconds_wait= 10;
+            }
         
 
 - **Lien commit**: https://github.com/AxelSenechal/-l3-miage-GL-projet-part2-AXEL-SENECHAL/commit/f3cf93c97720791156e9492d356a8a79def6511e
@@ -105,7 +168,12 @@ d
 
 - **Solution**: 
         
-        - Modification (refactoring) des méthodes concernées: changement du nom de méthode en nom plus clair et respectant la convention de camelCase.
+    - Modification (refactoring) des méthodes concernées: changement du nom de méthode en nom plus clair et respectant la convention de camelCase.
+            
+            b_When_a_test_forgets_to_release_keys => testForgetingKeysRelease
+            c_Then_keys_are_not_pressed testKeysNotPressed
+            e_When_a_test_forgets_to_release_buttons  testForgetingButtonsRelease
+            f_Then_buttons_are_not_pressed testButtonsNotPressed
 
 
         
@@ -137,3 +205,18 @@ Exemples:
 et de ce qui est fait, cette modification peut être consiérée comme moyenne)
 • utiliser un design pattern (MVC, Strategy, Composite, Decorator)
 • supprimer des cycles dans les dépendances entre packages.
+
+
+
+
+
+## Comparatif Partie 1 / Partie 2
+
+//Traitée : P4
+//Pas traité :
+
+## Retour
+
+//Brouillon
+- git public pour inciter aux bonnes pratiques publiquement + Git co pilot
+- Documenter mon code java car un enfer de relire derrière quelqu'un sans doc

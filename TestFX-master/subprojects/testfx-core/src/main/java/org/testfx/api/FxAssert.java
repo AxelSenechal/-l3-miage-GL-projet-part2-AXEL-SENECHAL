@@ -170,7 +170,7 @@ public final class FxAssert {
     }
 
         
-    /*/
+    /*
     Here are several methods to get to Node elements (Node / NodeSet / NodeMatcher)
     */
     

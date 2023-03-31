@@ -33,7 +33,7 @@ TestFX requires a minimum Java version of 8 (1.8) and JavaFX (no longer included
 
 [Credits](#credits)
 
-# <span id="documentation">Documentation </span>
+## <span id="documentation">Documentation </span>
 
 * See the [Javadocs](https://testfx.github.io/TestFX/docs/javadoc/) for latest `master`.
 * See the changelog [CHANGES.md](https://github.com/TestFX/TestFX/blob/master/CHANGES.md) for latest released version.

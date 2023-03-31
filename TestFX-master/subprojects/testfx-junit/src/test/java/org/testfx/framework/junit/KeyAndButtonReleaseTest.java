@@ -42,7 +42,6 @@ public class KeyAndButtonReleaseTest extends ApplicationTest {
     }
 
     @Test
-    
     public void testForgetingKeysRelease() {
         press(KeyCode.CONTROL, KeyCode.SHIFT, KeyCode.ALT);
     }
