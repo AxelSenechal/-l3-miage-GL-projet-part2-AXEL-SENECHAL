@@ -42,22 +42,23 @@ public class KeyAndButtonReleaseTest extends ApplicationTest {
     }
 
     @Test
-    public void b_When_a_test_forgets_to_release_keys() {
+    
+    public void testForgetingKeysRelease() {
         press(KeyCode.CONTROL, KeyCode.SHIFT, KeyCode.ALT);
     }
 
     @Test
-    public void c_Then_keys_are_not_pressed() {
+    public void testKeysNotPressed() {
         assertThat(robotContext().getKeyboardRobot().getPressedKeys().isEmpty(), is(true));
     }
 
     @Test
-    public void e_When_a_test_forgets_to_release_buttons() {
+    public void testForgetingButtonsRelease() {
         press(MouseButton.PRIMARY, MouseButton.SECONDARY, MouseButton.MIDDLE);
     }
 
     @Test
-    public void f_Then_buttons_are_not_pressed() {
+    public void testButtonsNotPressed() {
         assertThat(robotContext().getMouseRobot().getPressedButtons().isEmpty(), is(true));
     }
 }
