@@ -1,6 +1,6 @@
 /*
  * Copyright 2013-2014 SmartBear Software
- * Copyright 2014-2021 The TestFX Contributors
+ * Copyright 2014-2023 The TestFX Contributors
  *
  * Licensed under the EUPL, Version 1.1 or - as soon they will be approved by the
  * European Commission - subsequent versions of the EUPL (the "Licence"); You may
@@ -35,6 +35,45 @@ import org.testfx.service.query.NodeQuery;
 public final class FxAssert {
 
     private static FxAssertContext context;
+
+
+    /**
+     * Allow developer to debug a failed test (e.g. the state of the stage or node, which keys were pressed, etc.)
+     *
+     * @see org.testfx.util.DebugUtils
+     */
+    private static <T> void verifyThatImpl(String reason, T value, Matcher<? super T> matcher,
+                                           Function<StringBuilder, StringBuilder> errorMessageMapper) {
+        try {
+            MatcherAssert.assertThat(reason, value, matcher);
+        }
+        catch (AssertionError error) {
+            // TODO: make assertion throw more reliable.
+            StringBuilder sb = new StringBuilder(error.getMessage());
+            throw new AssertionError(errorMessageMapper.apply(sb));
+        }
+    }
+
+     
+/*/
+Here are several methods to get to Node elements (Node / NodeSet / NodeMatcher)
+*/
+    
+private static <T extends Node> T toNode(String nodeQuery) {
+    NodeFinder nodeFinder = assertContext().getNodeFinder();
+    return nodeFinder.lookup(nodeQuery).query();
+}
+
+private static <T extends Node> Set<T> toNodeSet(String nodeQuery) {
+    NodeFinder nodeFinder = assertContext().getNodeFinder();
+    return nodeFinder.lookup(nodeQuery).queryAll();
+}
+
+private static <T extends Node> Matcher<T> toNodeMatcher(Predicate<T> nodePredicate) {
+    return GeneralMatchers.baseMatcher("applies on Predicate", nodePredicate);
+}
+
+    // Variation of the verifyThat methods in its signatures, using verfyThatImpl and finders methods
 
     public static <T> void verifyThat(T value, Matcher<? super T> matcher) {
         verifyThatImpl("", value, matcher, Function.identity());
@@ -145,35 +184,6 @@ public final class FxAssert {
         return context;
     }
 
-    /**
-     * Allow developer to debug a failed test (e.g. the state of the stage or node, which keys were pressed, etc.)
-     *
-     * @see org.testfx.util.DebugUtils
-     */
-    private static <T> void verifyThatImpl(String reason, T value, Matcher<? super T> matcher,
-                                           Function<StringBuilder, StringBuilder> errorMessageMapper) {
-        try {
-            MatcherAssert.assertThat(reason, value, matcher);
-        }
-        catch (AssertionError error) {
-            // TODO: make assertion throw more reliable.
-            StringBuilder sb = new StringBuilder(error.getMessage());
-            throw new AssertionError(errorMessageMapper.apply(sb));
-        }
-    }
-
-    private static <T extends Node> T toNode(String nodeQuery) {
-        NodeFinder nodeFinder = assertContext().getNodeFinder();
-        return nodeFinder.lookup(nodeQuery).query();
-    }
-
-    private static <T extends Node> Set<T> toNodeSet(String nodeQuery) {
-        NodeFinder nodeFinder = assertContext().getNodeFinder();
-        return nodeFinder.lookup(nodeQuery).queryAll();
-    }
-
-    private static <T extends Node> Matcher<T> toNodeMatcher(Predicate<T> nodePredicate) {
-        return GeneralMatchers.baseMatcher("applies on Predicate", nodePredicate);
-    }
+   
 
 }
