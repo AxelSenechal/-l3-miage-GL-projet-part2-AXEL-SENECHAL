@@ -94,6 +94,25 @@ En effet, à la première lecture j'avais décider de déplacer directement les 
 - **Lien commit**: https://github.com/AxelSenechal/-l3-miage-GL-projet-part2-AXEL-SENECHAL/commit/f3cf93c97720791156e9492d356a8a79def6511e
 d
 
+#### P4 : KeyAndButtonReleaseTest.java - Nomenclature des méthodes
+
+- **Localisation**: KeyAndButtonReleaseTest.java 
+
+- **Explication**: Mauvaises pratiques détectée à la partie 1. 
+
+    `Les méthodes de test commencent par une lettre (à l'image de magic numbers, ces lettres sont arbitrairement choisies). De plus, un underscore est employé pour séparer les termes (Snake Case).`
+
+
+- **Solution**: 
+        
+        - Modification (refactoring) des méthodes concernées: changement du nom de méthode en nom plus clair et respectant la convention de camelCase.
+
+
+        
+
+- **Lien commit**: xx
+
+
 ### Moyennes modifications
 
 Exemples: 
