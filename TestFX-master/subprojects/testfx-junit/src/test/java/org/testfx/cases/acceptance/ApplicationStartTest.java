@@ -38,6 +38,11 @@ import static org.testfx.util.DebugUtils.informedErrorMessage;
 
 public class ApplicationStartTest extends ApplicationTest {
 
+      //Scene parameter
+      public double width,height;
+
+      double seconds_wait;
+
     @Rule
     public TestFXRule testFXRule = new TestFXRule();
     CountDownLatch setButtonTextLatch;
@@ -45,6 +50,11 @@ public class ApplicationStartTest extends ApplicationTest {
     @Override
     public void init() throws Exception {
         FxToolkit.registerStage(Stage::new);
+
+        //Setting scene parameters
+        width=100;
+        height=100;
+        seconds_wait= 10;
     }
 
     @Override
@@ -61,9 +71,13 @@ public class ApplicationStartTest extends ApplicationTest {
             button.setText("clicked!");
             setButtonTextLatch.countDown();
         });
-        stage.setScene(new Scene(button, 100, 100));
+
+
+      
+
+        stage.setScene(new Scene(button, width, height));
         try {
-            if (!setSceneLatch.await(10, TimeUnit.SECONDS)) {
+            if (!setSceneLatch.await(seconds_wait, TimeUnit.SECONDS)) {
                 fail("Timeout while waiting for scene to be set on stage.");
             }
         }

@@ -30,6 +30,15 @@ Et pour finir, le cloturerait sur un retour de mon apprentissage de Génie Logic
 ## Les Modifications
 ### Petites modifications
 
+Exemples: 
+
+• renommer une classe, une méthode, une variable
+• changer le type ou le nombre de paramètres d’une méthode
+• créer des variables pour supprimer des nombres magiques.
+• supprimer du code mort
+• réorganiser une classe pour le code soit bien structuré, les variables d’instance en
+début de classe, puis méthodes publiques et enfin méthodes privées
+
 #### P1: Amélioration du README
 
 - **Localisation**: README de TestFX
@@ -58,9 +67,54 @@ Et pour finir, le cloturerait sur un retour de mon apprentissage de Génie Logic
 
 
 
-- **Lien commit**: https://github.com/AxelSenechal/-l3-miage-GL-projet-part2-AXEL-SENECHAL/commit/0ea0e032a1e85b44fe3d0bc7c5489be6e694facd
+- **Lien commit**: 
+
+
+https://github.com/AxelSenechal/-l3-miage-GL-projet-part2-AXEL-SENECHAL/commit/ab8c62cb90260442f83714197f035367d4a665a7
+
+puis: 
+
+https://github.com/AxelSenechal/-l3-miage-GL-projet-part2-AXEL-SENECHAL/commit/0ea0e032a1e85b44fe3d0bc7c5489be6e694facd
+
+En effet, à la première lecture j'avais décider de déplacer directement les méthodes verifyThat et les méthodes de recherches *avant* les méthodes verifyThis, pour clarifier l'utilisation et le sens de lecture du code. Mais étant privées, ces méthodes doivent rester en fin de classe. J'ai donc remis en plus les méthodes et ai commenté comme annoncé dans la solution
+
+#### P3 :  Magic numbers -> Variables
+
+
+- **Localisation**: ApplicationStartTest.java
+
+- **Explication**: Des magics numbers étaient utilisés lors de l'initialisation de l'objeet Scene lors du test (méthode "start").
+
+- **Solution**: 
+        
+        - Mise en paramètre publique des attributs nécessaires à la création et l'utilisation de l'objet Scene.
+        - Initialisation de ces paramètres avec les valeurs choisies initialement en magic numbers dans la méthode "init".
+        
+
+- **Lien commit**: XXX
+
+
 ### Moyennes modifications
+
+Exemples: 
+• réduire la complexité cyclomatique ou le nombre de lignes d’une méthode
+• décomposer une méthode qui à la fois retourne des informations et modifie l’état
+d’un objet
+• remplacer le fait qu’une méthode retourne un code d’erreur par le fait qu’elle lève
+une exception
+• supprimer de la duplication de codes entre méthodes
+• ajouter un test pertinent
+• corriger un test rouge ou orange
 
 
 ### Grandes modifications
 
+Exemples: 
+• décomposer une god classe
+• ajouter une super classe pour supprimer des méthodes dupliquées
+• supprimer des classes static
+• fusionner des classes
+• supprimer des packages contenant peu de classes (en fonction du nombre de classes
+et de ce qui est fait, cette modification peut être consiérée comme moyenne)
+• utiliser un design pattern (MVC, Strategy, Composite, Decorator)
+• supprimer des cycles dans les dépendances entre packages.
