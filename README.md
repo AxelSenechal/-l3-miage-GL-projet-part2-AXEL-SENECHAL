@@ -22,9 +22,15 @@ Chaque modification suivra cette structure:
     - Lien commit git
 <br>
 
-## Petites modifications
+Puis, je présenterai le comparatif entre les bugs décelés à la partie 1 et les résolutions (ou explications si pas résolues) de cette partie 2.
 
-### P1: Amélioration du README
+Et pour finir, le cloturerait sur un retour de mon apprentissage de Génie Logiciel, sur ma prise de recul sur mes habitudes erronées et mes "bonnes résolutions" que ce cours m'a permis de prendre.
+
+
+## Les Modifications
+### Petites modifications
+
+#### P1: Amélioration du README
 
 - **Localisation**: README de TestFX
 
@@ -37,23 +43,24 @@ Chaque modification suivra cette structure:
 
 - **Lien commit**: https://github.com/AxelSenechal/-l3-miage-GL-projet-part2-AXEL-SENECHAL/commit/a2f11be09cc1dad42c88899058a61f3d540e3946
 
-### P2 : Commentaires ajoutés - FxAssert.java
+#### P2 : Commentaires ajoutés - FxAssert.java
 
 - **Localisation**: FxAssert.java
 
 - **Explication**: Classe assez grande déclinant l'utilisation polymorphe d'une methode. Nécessite plus de clarté
 
 - **Solution**: 
-        - Déplacement de la méthode wrappée en amont du code, pour que le lecteur puisse lire la fonction utilisée par la suite, plutot que de lire les applications de celle-ci sans la connaitre au préalable.
+        
         - Commentaire rajouté au dessus des méthodes de recherche à la fin de la classe pour la compréhesion de la suite de méthodes, de plus, ces méthodes ont étés déplacées en amont des méthodes les appelant.
-        - Commentaire présentant la suite de methode qui wrap verifyThat sous divers signatures, pour clarifier la lectue de code.
+        - Commentaire présentant la suite de methode qui wrap verifyThat sous divers signatures, pour clarifier la lecture de code, ainsi que les methodes privées déclarées plus tard par formalisme (mais qui du coup rendait la compréhension fragmentée)
+        - Mise à jour des copyrights des contributeurs Git à 2023.
         
 
 
 
-- **Lien commit**: https://github.com/AxelSenechal/-l3-miage-GL-projet-part2-AXEL-SENECHAL/commit/ab8c62cb90260442f83714197f035367d4a665a7
-## Moyennes modifications
+- **Lien commit**: ***
+### Moyennes modifications
 
 
-## Grandes modifications
+### Grandes modifications
 
