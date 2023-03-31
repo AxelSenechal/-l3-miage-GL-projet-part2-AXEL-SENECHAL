@@ -91,8 +91,8 @@ En effet, à la première lecture j'avais décider de déplacer directement les 
         - Initialisation de ces paramètres avec les valeurs choisies initialement en magic numbers dans la méthode "init".
         
 
-- **Lien commit**: XXX
-
+- **Lien commit**: https://github.com/AxelSenechal/-l3-miage-GL-projet-part2-AXEL-SENECHAL/commit/f3cf93c97720791156e9492d356a8a79def6511e
+d
 
 ### Moyennes modifications
 
