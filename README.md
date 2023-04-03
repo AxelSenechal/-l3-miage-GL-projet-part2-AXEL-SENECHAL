@@ -231,6 +231,37 @@ une exception
 - **Lien commit**: https://github.com/AxelSenechal/-l3-miage-GL-projet-part2-AXEL-SENECHAL/commit/afb3665da6d1537b603bb18833d8d34995a454a7
 
 
+
+## M2 PixelMatcherBase.java  & PixelMatcherRGB.java - Redondance d'interface + méthode mal placée
+
+- **Localisation**: PixelMatcherBase.java  & PixelMatcherRGB.java
+
+- **Explication**: Mauvaises pratiques détectée à la partie 1. 
+
+        
+        Ici, la classe PixelMatcherRGB hérite de la classe PixelMatcherBase. Elle implémente toute les deux la même interface, "PixelMatcher". 
+        Faire implémenter PixelMatcherRGB l'interface Pixer Matcher est inutile car elle l'implémente déjà par défaut grâce à son héritage.
+
+        Le plus vraisemblable serait que cela soit une trace d'un version précédente où l'implementation était nécessaire. Peut-etre que la classe mère était inexistante à un moment.
+        En tout cas, peu importe la raison réelle de la présence de cette redondance, elle reste très simple à corriger.
+        
+    De plus, après analyse plus profonde, la méthode "createEmptyMatchImage" ne dépendant en rien de la nature du caclul de couleur du RGB (ou autre systeme), la méthode n'a pas sa place dans une classe fille.
+
+- **Solution**: 
+        
+    - Suppression de "implements PixelMatcher" de la classe PixelMatcherRGB, le lien avec l'interface étant déjà hérité par sa classe mère abstraite.
+    - Déplacement de la méthode "createEmptyMatchImage" vers la classe mère abstraite car ce comportement standard est à hériter. Il n'utilise aucun argument/attribut de la classe, il n'y a que du traitement fait via deux "Image" données pour créer une image vierge.
+
+            @Override
+            public WritableImage createEmptyMatchImage(Image image0,
+                                                    Image image1) {
+                return new WritableImage((int) image0.getWidth(), (int) image1.getHeight());
+            }
+        
+
+- **Lien commit**: x
+
+
 ### Grandes modifications
 
 Exemples: 

@@ -56,4 +56,12 @@ public abstract class PixelMatcherBase implements PixelMatcher {
         return new PixelMatcherResult(matchImage, matchPixels, totalPixels);
     }
 
+    @Override
+    public WritableImage createEmptyMatchImage(Image image0,
+                                               Image image1) {
+        return new WritableImage((int) image0.getWidth(), (int) image1.getHeight());
+    }
+
+
+
 }

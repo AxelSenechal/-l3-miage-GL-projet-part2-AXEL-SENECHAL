@@ -23,7 +23,7 @@ import javafx.scene.paint.Color;
 import org.testfx.service.support.PixelMatcher;
 import org.testfx.util.ColorUtils;
 
-public class PixelMatcherRgb extends PixelMatcherBase implements PixelMatcher {
+public class PixelMatcherRgb extends PixelMatcherBase {
 
     private final double colorBlendFactor;
     private final double minColorDistSq;
@@ -44,11 +44,6 @@ public class PixelMatcherRgb extends PixelMatcherBase implements PixelMatcher {
         return colorDistSq < minColorDistSq;
     }
 
-    @Override
-    public WritableImage createEmptyMatchImage(Image image0,
-                                               Image image1) {
-        return new WritableImage((int) image0.getWidth(), (int) image1.getHeight());
-    }
 
     @Override
     public Color createMatchColor(Color color0, Color color1) {
