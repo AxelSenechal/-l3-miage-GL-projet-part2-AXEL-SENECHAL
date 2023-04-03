@@ -30,3 +30,4 @@ tags
 # Eclipse's gradle plugin
 bin/
 
+/.metadata/
