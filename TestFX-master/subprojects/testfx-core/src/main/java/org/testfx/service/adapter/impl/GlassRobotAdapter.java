@@ -62,6 +62,11 @@ public abstract class GlassRobotAdapter implements RobotAdapter {
         }
     }
 
+    //Implementation of robotCreate from the interface RobotAdapter. Needed for getrobot()
+    public void robotCreate() {
+        glassRobot = createGlassRobot();
+    }
+
     @Override
     public final void mouseWheel(int wheelAmount) {
         asyncFx(() -> getRobot().getClass().getMethod("mouseWheel", int.class).invoke(getRobot(), wheelAmount));

@@ -194,6 +194,41 @@ une exception
 • corriger un test rouge ou orange
 
 
+## M1 GlassRobotAdapter.java - Paramètre inutilisé / méthode non implémentée
+
+- **Localisation**: GlassRobotAdapter.java 
+
+- **Explication**: Mauvaises pratiques détectée à la partie 1. 
+
+        
+        Le paramètre glassRobot est inchangé et cette la méthode est un "getter" (getRobot). Cependant, la methode getRobot appelle une autre méthode lorsque le glassRobot est null. 
+        Cela n'a pas d'impact direct sur le paramètre en question car ceci est une méthode d'interface et GlassRobotAdaptater ne l'implémente pas lui-même. Il serait bon de soit encadré par de la documentation 
+        la nécessité de cet appel méthode, où de rendre celui-ci plus efficace en le supprimant si non-nécessaire.
+        
+
+
+- **Solution**: 
+        
+    - Implémentation de createRobot dans la classe pour permettre un encadrement local et spécifique propre au GlassRobot, lors de l'appel à la méthode getRobot() via cette classe:
+
+            public static GlassRobotAdapter createGlassRobot() {
+                if (publicRobot) {
+                    return new PublicGlassRobotAdapter();
+                }
+                else {
+                    return new PrivateGlassRobotAdapter();
+                }
+            }
+
+            //Implementation of robotCreate from the interface RobotAdapter. Needed for getrobot()
+            public void robotCreate() {
+                glassRobot = createGlassRobot();
+            }
+
+    La méthode createRobot reste donc inchangée, ne changeant pas le comportement du code.
+        
+
+- **Lien commit**: x
 ### Grandes modifications
 
 Exemples: 
@@ -213,7 +248,21 @@ et de ce qui est fait, cette modification peut être consiérée comme moyenne)
 ## Comparatif Partie 1 / Partie 2
 
 //Traitée : P4
-//Pas traité :
+//Pas traité : Tests JUnit4 et JUnit5 - Duplication de code (Code Smells - Don't Repeat Yourself)
+
+
+
+### Tests JUnit4 et JUnit5 - Duplication de code (Code Smells - Don't Repeat Yourself)
+
+Comme annoncé dans la partie 1, il y a beaucoup de duplication de classe/de code entre les subprojects JUnit4 et Junit5. L'intérêt aurait été de les faire s'importer ou de créer un classe mère commune, mais étant non pas des packages différents d'un même projet mais de véritable projet à pat entière rangé dans le même dossier git, le packaging n'arrive pas à remonter plus loin que "org.[...]" , les projets ne se voient pas.
+
+Cela serait laborieux, mais une solution possible serait peut-être de développer une bibliothèque pour les classes communes (tel que ApplicationAdaptater.java ou ApplicationFixture.java) et de créer une dépendance. Néanmoins, les dépendances déjà préexistantes étant déjà complexe, cette duplication permet, d'une certaine manière, une meilleure compréhension au prix d'une répétition; à contrario d'une économie de code mineure pour une complexité rendue plus nébuleuse.
+
+
+### WaitForAsyncUtils.java - Exception non gérée 
+
+Après analyse, le fait que l'exception ne soit pas gérée ici est tout à fait normal à cause de l'utilisation de `Futur<T>`. Ainsi même si une exeception devait être levée, le code de futur n'a a être vérfié qu'une fois produit, via les méthode get() et checkException(). Cela permet ici une meilleure adaptation à l'usage dans les divers tests utilisant TestFx dans ce cadre.
+
 
 ## Retour
 
