@@ -56,12 +56,19 @@ import static org.testfx.util.WaitForAsyncUtils.asyncFx;
 import static org.testfx.util.WaitForAsyncUtils.waitFor;
 import static org.testfx.util.WaitForAsyncUtils.waitForFxEvents;
 
-public class FxRobot implements FxRobotInterface {
+
+public class FxRobot implements FxRobotInterfaceBounds,FxRobotInterfaceCapture,
+FxRobotInterfaceClick,FxRobotInterfaceDragAndDropAndMove,FxRobotInterfaceInteractAndSleep,
+FxRobotInterfaceNode, FxRobotInterfacePointAndPointQuery,
+FxRobotInterfacePushAndTypeAndWrite,FxRobotInterfaceScroll,
+FxRobotInterfaceWindow
+{
 
     private final FxRobotContext context;
 
     /**
      * Constructs all robot-related implementations and sets {@link #targetPos(Pos)} to {@link Pos#CENTER}.
+     * If you want to construct another type of Robot, extends this class to get the necessary implements and base method definition
      */
     public FxRobot() {
         context = new FxRobotContext();

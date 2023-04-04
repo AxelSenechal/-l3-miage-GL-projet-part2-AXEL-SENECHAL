@@ -274,7 +274,70 @@ et de ce qui est fait, cette modification peut être consiérée comme moyenne)
 • utiliser un design pattern (MVC, Strategy, Composite, Decorator)
 • supprimer des cycles dans les dépendances entre packages.
 
+## G1 FxRobotInterface - God class / Interface de 1000+ lignes
 
+- **Localisation**: FxRobotInterface.java
+
+- **Explication**: Mauvaises pratiques détectée à la partie 1. 
+
+        
+        Une classe a particulièrement retenue notre attention. FxRobotInterface.java est une interface de plus de 1300 lignes. 
+        Pour respecter les conventions de bonnes pratiques, il faudrait séparer cette classe en plusieurs sous-classes, ce qui rendrait le code plus lisible et compréhensible.
+
+- **Solution**: 
+        
+    - Découpage de l'interface en 10 interfaces plus courtes aux noms explicites, permettant un meilleur ciblage des fonctionnalités et une maintenance plus claire:
+
+            -FxRobotInterfaceWindow
+            -FxRobotInterfaceNode
+            -FxRobotInterfaceBounds
+            -FxRobotInterfacePointAndPointQuery
+            -FxRobotInterfaceCapture
+            -FxRobotInterfaceInteractAndSleep
+            -FxRobotInterfaceClick
+            -FxRobotInterfaceDragAndDropAndMove
+            -FxRobotInterfaceScroll
+            -FxRobotInterfacePushAndTypeAndWrite
+
+    - Changement de la signature des méthodes de l'interface. Beaucoup d'entre elle renvoyait FxRobotInterface, mais était uniquement utilisé par FxRobot en réalité. Remplacement donc par FxRobot à chaque appel de l'interface supprimée.
+
+        - Exemple (Dans FxRobotInterfaceClick):
+
+                /**
+                * Calls {@link org.testfx.robot.ClickRobot#clickOn(PointQuery, MouseButton...)} and returns itself for more method
+                * chaining.
+                */
+                FxRobotInterface clickOn(PointQuery pointQuery, Motion motion, MouseButton... buttons);
+
+                En 
+
+                                    /**
+                * Calls {@link org.testfx.robot.ClickRobot#clickOn(PointQuery, MouseButton...)} and returns itself for more method
+                * chaining.
+                */
+                FxRobot clickOn(PointQuery pointQuery, Motion motion, MouseButton... buttons);
+
+
+
+    - Modification de la classe FxRobot qui implémentait cette interface pour quelle implémente les sous-interfaces créées. Ajout d'un commentaire incitant à hériter de FxRobot plutôt que d'implémenter toutes les interfaces, permettant aussi l'interversion des paramètres de retour des méthodes comme indiqué ci-dessus.
+
+
+            
+            public class FxRobot implements FxRobotInterfaceBounds,FxRobotInterfaceCapture,
+            FxRobotInterfaceClick,FxRobotInterfaceDragAndDropAndMove,FxRobotInterfaceInteractAndSleep,
+            FxRobotInterfaceNode, FxRobotInterfacePointAndPointQuery,
+            FxRobotInterfacePushAndTypeAndWrite,FxRobotInterfaceScroll,
+            FxRobotInterfaceWindow
+            {
+
+                private final FxRobotContext context;
+
+                //.........Reste de la classe
+
+       
+        
+
+- **Lien commit**: x
 
 
 
