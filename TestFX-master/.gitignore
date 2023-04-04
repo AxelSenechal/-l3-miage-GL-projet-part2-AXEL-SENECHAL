@@ -1,3 +1,7 @@
+
+# metadata
+.metadata/ 
+
 # gradle cache and build files.
 .gradle/
 build/
