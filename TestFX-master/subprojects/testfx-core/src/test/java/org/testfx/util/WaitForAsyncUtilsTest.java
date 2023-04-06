@@ -125,18 +125,15 @@ public class WaitForAsyncUtilsTest {
             future = WaitForAsyncUtils.async(callable);
             fail("No exception thrown by autoCheck");
         }
-        catch (Throwable e) {
-            if (!(e instanceof UnsupportedOperationException)) {
-                throw e;
-            }
+        catch (UnsupportedOperationException e){
+            //You can here managed how you deal with UnsupportedOperationException, with a standard error log/system printing/etc
         }
-
-        WaitForAsyncUtils.clearExceptions();
-        waitForThreads(future);
+        catch (Throwable e) {
+                throw e;
+        }
     }
-
-    @Test
-    public void unhandledExceptionTest() throws Throwable {
+        
+t() throws Throwable {
         for (int i = 0; i < 20; i++) {
             // given:
             WaitForAsyncUtils.printException = false;

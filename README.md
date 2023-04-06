@@ -8,7 +8,7 @@
     - [Petites modifications](#petites-modifications)
         - [P1 - Amélioration du README](#p1-amélioration-du-readme)
         - [P2 - Commentaire ajoutés](#p2--commentaires-ajoutés---fxassertjava)
-        - [P3 :  Magic numbers en Variables](#p3--magic-numbers-en-variables)
+        - [P3 -  Magic numbers en Variables](#p3--magic-numbers-en-variables)
         - [P4 - Nomenclature Méthode](#p4--keyandbuttonreleasetestjava---nomenclature-des-méthodese)
 
     - [Moyennes modification](#moyennes-modifications)
@@ -125,7 +125,7 @@ https://github.com/AxelSenechal/-l3-miage-GL-projet-part2-AXEL-SENECHAL/commit/0
 
 En effet, à la première lecture j'avais décider de déplacer directement les méthodes verifyThat et les méthodes de recherches *avant* les méthodes verifyThis, pour clarifier l'utilisation et le sens de lecture du code. Mais étant privées, ces méthodes doivent rester en fin de classe. J'ai donc remis en plus les méthodes et ai commenté comme annoncé dans la solution
 
-#### P3 :  Magic numbers en Variables
+#### P3 -  Magic numbers en Variables
 
 
 - **Localisation**: ApplicationStartTest.java
@@ -262,6 +262,47 @@ une exception
 - **Lien commit**: https://github.com/AxelSenechal/-l3-miage-GL-projet-part2-AXEL-SENECHAL/commit/b12ff27d2ea13f9712b61c9fbce15a0be121f62f
 
 
+## M3 WaitForAsyncUtilsTest.java  & WaitForAsyncUtilsFxTest.java - Gestion d'exception explicitée + Logique inverse déportée
+
+- **Localisation**: WaitForAsyncUtilsTest.java  & WaitForAsyncUtilsFxTest.java
+
+- **Explication**: 
+
+Plusieurs fois dans ces deux classes, des levées de Throwable sont encadrées. Si ce Throwable est non géré, une exception est levée et s'il l'est, il est simplement "throw". 
+
+
+        // then:
+        try {
+            WaitForAsyncUtils.checkException();
+            fail("checkException didn't detect Exception");
+        }
+        catch (Throwable e) {
+            if (!(e instanceof UnsupportedOperationException)) {
+                throw e;
+            }
+        }
+
+Néanmoins, l'exception UnsupportedOperationException n'entraine aucun traitement si levée, ni même de la documentation sur le comportement ici appliqué.
+
+- **Solution**: 
+        
+    - Catch préalable de ce type d'exception pour traitement/documentation comportementale + allégé la comparaison d'un comparatif
+
+            try {
+                    future = WaitForAsyncUtils.async(callable);
+                    fail("No exception thrown by autoCheck");
+                }
+                catch (UnsupportedOperationException e){
+                    //You can here managed how you deal with UnsupportedOperationException, with a standard error log/system printing/etc
+                }
+                catch (Throwable e) {
+                        throw e;
+                }
+        
+
+- **Lien commit**: x
+
+
 ### Grandes modifications
 
 Exemples: 
@@ -343,8 +384,9 @@ et de ce qui est fait, cette modification peut être consiérée comme moyenne)
 
 ## Comparatif Partie 1 / Partie 2
 
-//Traitée : P4
-//Pas traité : Tests JUnit4 et JUnit5 - Duplication de code (Code Smells - Don't Repeat Yourself)
+//Traitée : P4, G1
+//Pas traité : Tests JUnit4 et JUnit5 - Duplication de code (Code Smells - Don't Repeat Yourself);WaitForAsyncUtils.java - Exception non gérée 
+
 
 
 
