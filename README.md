@@ -542,20 +542,27 @@ Après analyse, le fait que l'exception ne soit pas gérée ici est tout à fait
 
 ## Retour 
 
-//Brouillon
-
-
 ### Bonnes pratiques adoptées
 
 #### Javadoc
 
-- Documenter mon code java car un enfer de relire derrière quelqu'un sans doc
-
-Documenter mon code est devenu une priorité. Devoir explorer un code parfois non-documenté ou tout du moins mal commenté s'est avéré être un vrai calvaire. 
+Documenter mon code est devenu une priorité. Devoir explorer un code parfois non-documenté ou tout du moins mal commenté s'est avéré être un vrai calvaire. Impossible de vraiment bien maintenir un code incompréhensible.
+Commenter mon code est devenu une bonne résolution que je souhaite vraiment tenir.
 
 
 - git public pour inciter aux bonnes pratiques publiquement + Git co pilot
+#### Utilisation de Git
 
+Git c'est révélé comme l'outil primordial qu'il est dans la sphère du développement.
+Entre le module PROJET à 8 participants et la partie 1 de ce projet, le fait concret de se retrouver à développer à plusieurs et surtout sur du code qui n'est pas le sien c'est montré encore plus éducatif que prévu. 
+Et cette partie 2 permet vraiment de réaliser que la notion de commit permet une maintenance claire, une étude lucide du contenu d'un projet au delà du résultat final.
+La possibilité de pouvoir également réagir de manière très localicée sur les changements comme vous l'avez fait sur mon [commit de P4](https://github.com/AxelSenechal/-l3-miage-GL-projet-part2-AXEL-SENECHAL/commit/05b9c2fc860b751f31763ddb18b0c078b29c9d53), est vraiment intéressant pour pouvoir être constructif avec une focalisation à la fois précise et détaillée.
+
+De plus, j'ai fait le choix personnel de développer via GitHub, car plusieurs outils se servent des données publiques qui y sont disponibles. En laissant se travail en publique, je permets donc à mon échelle, un impact global sur les bonnes tenues des méthodologies de Génie Logiciel, notamment via la contribution que cela apporte au fameux [GitHub Co-Pilot](https://github.com/features/copilot).
 
 
 ### Reflexion constructives sur le module "Génie Logiciel" de la L3 MIAGE
+
+- De mon expérience personnelle, TestFX a posé quelques problèmes avec de sa dépendance de JavaFX qui est depuis plusieurs années externe à JRE ainsi que la notion de build gradle inhérente au projet qui nous a assez désarçonnée au début. Cela n'a pas empêché le travail d'être réalisé, mais cela a entrainé une mise en place initiale plutôt déconcertante. 
+
+- Je pense qu'il serait très intéressant de se servir de ce module pour augmenter l'unité dans la formation. Pourquoi pas étudier par exemple des projets des L3 précédentes ? Ou de MASTER ?
