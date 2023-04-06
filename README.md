@@ -8,8 +8,9 @@
     - [Petites modifications](#petites-modifications)
         - [P1 - Amélioration du README](#p1-amélioration-du-readme)
         - [P2 - Commentaire ajoutés](#p2--commentaires-ajoutés---fxassertjava)
-        - [P3 -  Magic numbers en Variables](#p3--magic-numbers-en-variables)
+        - [P3 -  Magic numbers en Variables](#p3---magic-numbers-en-variables)
         - [P4 - Nomenclature Méthode](#p4--keyandbuttonreleasetestjava---nomenclature-des-méthodes)
+        - [P5 - Création de test unitaire](#p5--draganddroptestjava---création-de-test-unitaire)
 
     - [Moyennes modification](#moyennes-modifications)
         - [M1 - Paramètre inutilisé / méthode non implémentée](#m1-glassrobotadapterjava---paramètre-inutilisé--méthode-non-implémentée)
@@ -133,7 +134,7 @@ https://github.com/AxelSenechal/-l3-miage-GL-projet-part2-AXEL-SENECHAL/commit/0
 
 En effet, à la première lecture j'avais décider de déplacer directement les méthodes verifyThat et les méthodes de recherches *avant* les méthodes verifyThis, pour clarifier l'utilisation et le sens de lecture du code. Mais étant privées, ces méthodes doivent rester en fin de classe. J'ai donc remis en plus les méthodes et ai commenté comme annoncé dans la solution
 
-#### P3 -  Magic numbers en Variables
+#### P3 - Magic numbers en Variables
 
 
 - **Localisation**: ApplicationStartTest.java
