@@ -43,6 +43,8 @@ Chaque modification suivra cette structure:
     - Lien commit git
 <br>
 
+La classification est basée sur la fin du [sujet](https://moodle.univ-lille.fr/pluginfile.php/1401304/mod_resource/content/6/sujetProjet.pdf) ainsi que d'évaluation personnelle. Cette classification est donc arbitraire et il est libre au correcteur d'y appliquer son jugement, celle-ci étant surtout à titre indicatif et dans l'objectif de rendre la lecture de ce rapport plus clair.
+
 Puis, je présenterai le comparatif entre les bugs décelés à la partie 1 et les résolutions (ou explications si pas résolues) de cette partie 2.
 
 Et pour finir, le cloturerait sur un retour de mon apprentissage de Génie Logiciel, sur ma prise de recul sur mes habitudes erronées et mes "bonnes résolutions" que ce cours m'a permis de prendre.
@@ -197,7 +199,7 @@ Les tests de Drag&Drop Gauche vers Droite, Droite vers Gauche, et Gauche vers Ga
 
 - **Solution**: 
         
-    - Implémentation d'un test pour le Drag&Drop Droite vers Droite. (Par soucis d'homgénéité, j'utilise la convention d'écriture de ces méthodes-test soeurs, malgré P4)
+    - Implémentation d'un test pour le Drag&Drop Droite vers Droite. (Par soucis d'homgénéité, j'utilise la convention d'écriture de ces méthodes-test soeurs, malgré P4). Bien que d'après le barème classifiant un test unitaire comme étant de catégorie M, j'évalue personnellement celui-ci à une modification de catégorie P.
 
             @Test
                 public void should_drag_and_drop_from_right_to_right() {
