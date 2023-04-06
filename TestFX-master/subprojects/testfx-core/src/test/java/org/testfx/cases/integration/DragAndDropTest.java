@@ -134,4 +134,17 @@ public class DragAndDropTest extends TestCaseBase {
                 .containsExactly("R1", "R2", "R3");
     }
 
+    @Test
+    public void should_drag_and_drop_from_right_to_right() {
+        // when:
+        drag("R3");
+        dropTo("R2");
+
+        // then:
+        assertThat(waitForAsyncFx(5000, () -> leftListView.getItems()))
+                .containsExactly("L1", "L2", "L3");
+        assertThat(waitForAsyncFx(5000, () -> rightListView.getItems()))
+                .containsExactly("R1", "R2", "R3");
+    }
+
 }

@@ -9,7 +9,7 @@
         - [P1 - Amélioration du README](#p1-amélioration-du-readme)
         - [P2 - Commentaire ajoutés](#p2--commentaires-ajoutés---fxassertjava)
         - [P3 -  Magic numbers en Variables](#p3--magic-numbers-en-variables)
-        - [P4 - Nomenclature Méthode](#p4--keyandbuttonreleasetestjava---nomenclature-des-méthodese)
+        - [P4 - Nomenclature Méthode](#p4--keyandbuttonreleasetestjava---nomenclature-des-méthodes)
 
     - [Moyennes modification](#moyennes-modifications)
         - [M1 - Paramètre inutilisé / méthode non implémentée](#m1-glassrobotadapterjava---paramètre-inutilisé--méthode-non-implémentée)
@@ -185,6 +185,41 @@ En effet, à la première lecture j'avais décider de déplacer directement les 
         
 
 - **Lien commit**: https://github.com/AxelSenechal/-l3-miage-GL-projet-part2-AXEL-SENECHAL/commit/05b9c2fc860b751f31763ddb18b0c078b29c9d53
+
+
+#### P5 : DragAndDropTest.java - Création de test unitaire
+
+- **Localisation**: DragAndDropTest.java 
+
+- **Explication**: 
+Les tests de Drag&Drop Gauche vers Droite, Droite vers Gauche, et Gauche vers Gauche sont déjà réalisés, mais pas Droit vers Droite
+
+
+- **Solution**: 
+        
+    - Implémentation d'un test pour le Drag&Drop Droite vers Droite. (Par soucis d'homgénéité, j'utilise la convention d'écriture de ces méthodes-test soeurs, malgré P4)
+
+            @Test
+                public void should_drag_and_drop_from_right_to_right() {
+                    // when:
+                    drag("R3");
+                    dropTo("R2");
+
+                    // then:
+                    assertThat(waitForAsyncFx(5000, () -> leftListView.getItems()))
+                            .containsExactly("L1", "L2", "L3");
+                    assertThat(waitForAsyncFx(5000, () -> rightListView.getItems()))
+                            .containsExactly("R1", "R2", "R3");
+                }
+
+
+
+        
+
+- **Lien commit**: x
+
+
+
 
 
 ### Moyennes modifications
