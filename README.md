@@ -518,8 +518,12 @@ et de ce qui est fait, cette modification peut être consiérée comme moyenne)
 
 ## Comparatif Partie 1 / Partie 2
 
-//Traitée : P4, G1, M1, M2
-//Pas traité : Tests JUnit4 et JUnit5 - Duplication de code (Code Smells - Don't Repeat Yourself);WaitForAsyncUtils.java - Exception non gérée 
+Partie traitant des points évoqués dans la partie 1: 
+    - [P4 - Nomenclature des méthodes](#p4--keyandbuttonreleasetestjava---nomenclature-des-méthodes)
+    - [M1 - Paramètre inutilisé + méthode non-implémentée](#m1-glassrobotadapterjava---paramètre-inutilisé--méthode-non-implémentée)
+    - [M2 - Redondance d'interface](#m2-pixelmatcherbasejava--pixelmatcherrgbjava---redondance-dinterface--méthode-mal-placée)
+    - [G1 - God class / interface trop grande](#g1-fxrobotinterface---god-class--interface-de-1000-lignes)
+
 
 
 
@@ -536,8 +540,22 @@ Cela serait laborieux, mais une solution possible serait peut-être de développ
 Après analyse, le fait que l'exception ne soit pas gérée ici est tout à fait normal à cause de l'utilisation de `Futur<T>`. Ainsi même si une exeception devait être levée, le code de futur n'a a être vérfié qu'une fois produit, via les méthode get() et checkException(). Cela permet ici une meilleure adaptation à l'usage dans les divers tests utilisant TestFx dans ce cadre.
 
 
-## Retour
+## Retour 
 
 //Brouillon
-- git public pour inciter aux bonnes pratiques publiquement + Git co pilot
+
+
+### Bonnes pratiques adoptées
+
+#### Javadoc
+
 - Documenter mon code java car un enfer de relire derrière quelqu'un sans doc
+
+Documenter mon code est devenu une priorité. Devoir explorer un code parfois non-documenté ou tout du moins mal commenté s'est avéré être un vrai calvaire. 
+
+
+- git public pour inciter aux bonnes pratiques publiquement + Git co pilot
+
+
+
+### Reflexion constructives sur le module "Génie Logiciel" de la L3 MIAGE
