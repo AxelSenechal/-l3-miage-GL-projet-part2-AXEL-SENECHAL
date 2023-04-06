@@ -76,10 +76,11 @@ public class WaitForAsyncUtilsFxTest {
             WaitForAsyncUtils.checkException();
             fail("checkException didn't detect Exception");
         }
+        catch (UnsupportedOperationException e){
+            //You can here managed how you deal with UnsupportedOperationException, with a standard error log/system printing/etc
+        }
         catch (Throwable e) {
-            if (!(e instanceof UnsupportedOperationException)) {
                 throw e;
-            }
         }
         WaitForAsyncUtils.printException = true;
         WaitForAsyncUtils.waitFor(50, MILLISECONDS, future);
@@ -105,10 +106,11 @@ public class WaitForAsyncUtilsFxTest {
             WaitForAsyncUtils.checkException();
             fail("checkException didn't detect Exception");
         }
+        catch (UnsupportedOperationException e){
+            //You can here managed how you deal with UnsupportedOperationException, with a standard error log/system printing/etc
+        }
         catch (Throwable e) {
-            if (!(e instanceof UnsupportedOperationException)) {
                 throw e;
-            }
         }
         WaitForAsyncUtils.printException = true;
         WaitForAsyncUtils.waitFor(50, MILLISECONDS, future);
