@@ -12,7 +12,13 @@
         - [P4 - Nomenclature Méthode](#p4--keyandbuttonreleasetestjava---nomenclature-des-méthodese)
 
     - [Moyennes modification](#moyennes-modifications)
+        - [M1 - Paramètre inutilisé / méthode non implémentée](#m1-glassrobotadapterjava---paramètre-inutilisé--méthode-non-implémentée)
+        - [M2 - Redondance d'interface + méthode mal placée](#m2-pixelmatcherbasejava--pixelmatcherrgbjava---redondance-dinterface--méthode-mal-placée)
+        - [M3 - Gestion d'exception explicitée + Logique inverse déportée](#m3-waitforasyncutilstestjava--waitforasyncutilsfxtestjava---gestion-dexception-explicitée--logique-inverse-déportée)
+        - [M4 - Switch sans default case + encadrement par levé d'exception](#m4-moverobotimpljava---switch-sans-default-case--encadrement-par-levée-dexception)
+ 
     - [Grandes modification](#grandes-modifications)
+        - [G1 - God class / Interface de 1000+ lignes](#g1-fxrobotinterface---god-class--interface-de-1000-lignes)
 - [Comparatif Partie 1 / Partie 2](#comparatif-partie-1--partie-2)
 - [Retour](#retour)
 ## Introduction
@@ -306,7 +312,7 @@ Néanmoins, l'exception UnsupportedOperationException n'entraine aucun traitemen
 
 
 
-## M4 MoveRobotImpl.java - Switch sans default case + encadrement par levé d'exception
+## M4 MoveRobotImpl.java - Switch sans default case + encadrement par levée d'exception
 
 - **Localisation**: MoveRobotImpl.java
 
