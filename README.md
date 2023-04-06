@@ -155,7 +155,7 @@ En effet, à la première lecture j'avais décider de déplacer directement les 
         
 
 - **Lien commit**: https://github.com/AxelSenechal/-l3-miage-GL-projet-part2-AXEL-SENECHAL/commit/f3cf93c97720791156e9492d356a8a79def6511e
-d
+
 
 #### P4 : KeyAndButtonReleaseTest.java - Nomenclature des méthodes
 
@@ -300,7 +300,97 @@ Néanmoins, l'exception UnsupportedOperationException n'entraine aucun traitemen
                 }
         
 
-- **Lien commit**: x
+- **Liens commits**: 
+    - https://github.com/AxelSenechal/-l3-miage-GL-projet-part2-AXEL-SENECHAL/commit/feccadd12b32a49928d524085c8f1d55d91d7944
+    - https://github.com/AxelSenechal/-l3-miage-GL-projet-part2-AXEL-SENECHAL/commit/954055536cc1ff5861d8692814943db5f03c8292
+
+
+
+## M4 MoveRobotImpl.java - Switch sans default case + encadrement par levé d'exception
+
+- **Localisation**: MoveRobotImpl.java
+
+- **Explication**: 
+
+Dans la méthode ``public void moveBy(double x, double y, Motion motion)``, MoveRobotImpl.java utilise un switch mais sans aucune valeur default:
+
+
+
+    [...Début de la méthode...]
+    switch (motion) {
+                case DIRECT:
+                    path = interpolatePointsBetween(sourcePoint, targetPoint, totalStepsCount);
+                    break;
+                case HORIZONTAL_FIRST: {
+                    Point2D intermediate = new Point2D(targetPoint.getX(), sourcePoint.getY());
+                    path = Stream.concat(
+                            interpolatePointsBetween(
+                                    sourcePoint, intermediate, horizontalStepsCount).stream(),
+                            interpolatePointsBetween(
+                                    intermediate, targetPoint, verticalStepsCount).stream())
+                            .collect(Collectors.toList());
+                    break;
+                }
+                case VERTICAL_FIRST: {
+                    Point2D intermediate = new Point2D(sourcePoint.getX(), targetPoint.getY());
+                    path = Stream.concat(
+                            interpolatePointsBetween(
+                                    sourcePoint, intermediate, verticalStepsCount).stream(),
+                            interpolatePointsBetween(
+                                    intermediate, targetPoint, horizontalStepsCount).stream())
+                            .collect(Collectors.toList());
+                    break;
+                }
+            }
+
+
+
+
+- **Solution**: 
+        
+    - Création d'un default case, envoyant une exception de type ``UnsupportedOperationException`` car un comportement non encadré par ces 3 cases seraient un cas d'opération non supportée par le Robot.
+
+       
+            switch (motion) {
+                        case DIRECT:
+                            path = interpolatePointsBetween(sourcePoint, targetPoint, totalStepsCount);
+                            break;
+                        case HORIZONTAL_FIRST: {
+                            Point2D intermediate = new Point2D(targetPoint.getX(), sourcePoint.getY());
+                            path = Stream.concat(
+                                    interpolatePointsBetween(
+                                            sourcePoint, intermediate, horizontalStepsCount).stream(),
+                                    interpolatePointsBetween(
+                                            intermediate, targetPoint, verticalStepsCount).stream())
+                                    .collect(Collectors.toList());
+                            break;
+                        }
+                        case VERTICAL_FIRST: {
+                            Point2D intermediate = new Point2D(sourcePoint.getX(), targetPoint.getY());
+                            path = Stream.concat(
+                                    interpolatePointsBetween(
+                                            sourcePoint, intermediate, verticalStepsCount).stream(),
+                                    interpolatePointsBetween(
+                                            intermediate, targetPoint, horizontalStepsCount).stream())
+                                    .collect(Collectors.toList());
+                            break;
+                        }
+                        default: {
+                            throw new UnsupportedOperationException();
+                            break;
+                        }
+                    }
+
+        
+
+- **Liens commits**: 
+
+
+
+
+
+
+
 
 
 ### Grandes modifications
@@ -384,7 +474,7 @@ et de ce qui est fait, cette modification peut être consiérée comme moyenne)
 
 ## Comparatif Partie 1 / Partie 2
 
-//Traitée : P4, G1
+//Traitée : P4, G1, M1, M2
 //Pas traité : Tests JUnit4 et JUnit5 - Duplication de code (Code Smells - Don't Repeat Yourself);WaitForAsyncUtils.java - Exception non gérée 
 
 

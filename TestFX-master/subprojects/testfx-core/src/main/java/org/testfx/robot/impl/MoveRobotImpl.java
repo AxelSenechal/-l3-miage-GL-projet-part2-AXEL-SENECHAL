@@ -130,6 +130,10 @@ public class MoveRobotImpl implements MoveRobot {
                         .collect(Collectors.toList());
                 break;
             }
+            default: {
+                throw new UnsupportedOperationException();
+                break;
+            }
         }
 
         for (int i = 0; i < path.size() - 1; i++) {
